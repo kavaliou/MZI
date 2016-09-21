@@ -110,8 +110,8 @@ LENGTH = 64
 KEY = '10101011101010101001000010101101110100100101001001010110'
 
 
-def get_keys():
-    keys = [map(int, KEY[index:index + 7]) for index in xrange(0, len(KEY), 7)]
+def get_keys(input_key=KEY):
+    keys = [map(int, input_key[index:index + 7]) for index in xrange(0, len(input_key), 7)]
     for key in keys:
         if sum(key) % 2 == 0:
             key.append(1)
