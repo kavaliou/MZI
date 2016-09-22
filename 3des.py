@@ -21,8 +21,8 @@ def encrypt(text, keys):
             enc.extend(encrypted_block)
 
         text = []
-        for i in xrange(len(enc) / 7):
-            text.append(rw.from_bin(enc[i * 7:(i + 1) * 7]))
+        for i in xrange(len(enc) / 8):
+            text.append(rw.from_bin(enc[i * 8:(i + 1) * 8]))
 
         text = ''.join(text)
 
@@ -38,8 +38,8 @@ def decrypt(text, keys):
             dec.extend(decrypted_block)
 
         text = []
-        for i in xrange(len(dec) / 7):
-            text.append(rw.from_bin(dec[i * 7:(i + 1) * 7]))
+        for i in xrange(len(dec) / 8):
+            text.append(rw.from_bin(dec[i * 8:(i + 1) * 8]))
 
         text = ''.join(text)
 

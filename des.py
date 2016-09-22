@@ -165,16 +165,6 @@ def decrypt(bits, keys):
     return bits
 
 
-def read(filename):
-    with open(filename, 'r') as input_file:
-        return map(int, input_file.readline().strip())
-
-
-def write(filename, line):
-    with open(filename, 'w') as output_file:
-        return output_file.write(line)
-
-
 if __name__ == '__main__':
     keys = get_keys()
     text = rw.get_text()
@@ -185,8 +175,8 @@ if __name__ == '__main__':
         enc.extend(encrypted_block)
 
     t = []
-    for i in xrange(len(enc)/7):
-        t.append(rw.from_bin(enc[i*7:(i+1)*7]))
+    for i in xrange(len(enc)/8):
+        t.append(rw.from_bin(enc[i*8:(i+1)*8]))
 
     t = ''.join(t)
 
@@ -196,8 +186,8 @@ if __name__ == '__main__':
         dec.extend(decrypted_block)
 
     t = []
-    for i in xrange(len(dec) / 7):
-        t.append(rw.from_bin(dec[i * 7:(i + 1) * 7]))
+    for i in xrange(len(dec) / 8):
+        t.append(rw.from_bin(dec[i * 8:(i + 1) * 8]))
 
     t = ''.join(t)
 
