@@ -5,6 +5,23 @@ def to_bin(text):
             yield int(i)
 
 
+def to_byte(text):
+    for c in text:
+        yield ord(c)
+
+
+def big_text_to_byte(text, block_length=16):
+    bytes_buffer = []
+    for byte in to_byte(text):
+        bytes_buffer.append(byte)
+        if len(bytes_buffer) == block_length:
+            yield bytes_buffer
+            bytes_buffer = []
+    if bytes_buffer:
+        bytes_buffer.extend(list(to_byte(''.join(['.'] * (block_length - len(bytes_buffer))))))
+        yield bytes_buffer
+
+
 def big_text_to_bin(text, block_length=64):
     bits_buffer = []
     for bit in to_bin(text):
@@ -15,6 +32,12 @@ def big_text_to_bin(text, block_length=64):
     if bits_buffer:
         bits_buffer.extend(list(to_bin(''.join(['.'] * ((block_length - len(bits_buffer)) / 8)))))
         yield bits_buffer
+
+
+def from_byte(c):
+    return unichr(c)
+
+
 
 
 def from_bin(array):
