@@ -1,3 +1,5 @@
+import time
+
 import read_write as rw
 
 import des
@@ -47,13 +49,22 @@ def decrypt(text, keys):
 
 
 if __name__ == '__main__':
-    keys = get_keys()
 
-    text = rw.get_text()
+    start_time = time.time()
 
-    encrypted_text = encrypt(text, keys)
-    decrypted_text = decrypt(encrypted_text, list(reversed(keys)))
+    for i in range(10):
 
-    print encrypted_text
-    print '\n============\n'
-    print decrypted_text
+        keys = get_keys()
+
+        text = rw.get_text()
+
+        encrypted_text = encrypt(text, keys)
+        decrypted_text = decrypt(encrypted_text, list(reversed(keys)))
+
+        # print encrypted_text
+        # print '\n============\n'
+        # print decrypted_text
+
+    end_time = time.time()
+
+    print (end_time - start_time)
